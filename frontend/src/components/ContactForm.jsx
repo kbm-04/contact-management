@@ -9,11 +9,14 @@ const ContactForm = ({setContacts,contacts}) => {
     const[phone,setPhone]=useState('');
     const[status,setStatus]=useState('Interested');
 
+
+    const API = import.meta.env.VITE_BACKEND_URL;
+
     const handleSubmit= async (e)=>{
        e.preventDefault();
        if(!name || !email) return alert("Name and Email are required")
       try {
-        const res= await axios.post("http://localhost:5000/contacts",{
+        const res= await axios.post(`${API/contacts}`,{
           name,company,email,phone,status,
         })
         setContacts([res.data,...contacts])
